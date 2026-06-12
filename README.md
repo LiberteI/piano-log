@@ -2,7 +2,6 @@
 
 ## How to use
 After every session, copy the template below and fill it in.
-BPM is your most quantifiable metric; track it religiously.
 
 ---
 ## Rules of Thumb
@@ -17,9 +16,11 @@ BPM is your most quantifiable metric; track it religiously.
 1. Each session belongs to a week folder.
 2. Weekly commitment is 7 to 10 hours.
 3. This file works as a scrum update.
+---
 
 ### YYYY-MM-DD
 **Total time:** X min
+---
 
 #### Fundamentals
 - [ ] Scales
@@ -38,12 +39,14 @@ BPM is your most quantifiable metric; track it religiously.
 - **BPM:**
 - **Problem:**
 - **Time:**
+---
 
 #### Etude
 - Piece: No.
 - BPM:
 - Problem:
 - Time of focus:
+---
 
 #### Repertoire
 - Piece:
@@ -51,9 +54,11 @@ BPM is your most quantifiable metric; track it religiously.
 - BPM:
 - Note:
 - Time of focus:
+---
 
 #### Today's win
 > (one thing that was better than last time)
+---
 
 #### Tomorrow's focus
 >
