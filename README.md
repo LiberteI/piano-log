@@ -4,6 +4,7 @@
 After every session, copy the template below and fill it in.
 
 ---
+
 ## Rules of Thumb
 1. Practice with full attention; do not play on autopilot.
 2. Prioritize control and musicality over raw BPM.
@@ -16,11 +17,11 @@ After every session, copy the template below and fill it in.
 1. Each session belongs to a week folder.
 2. Weekly commitment is 7 to 10 hours.
 3. This file works as a scrum update.
+
 ---
 
 ### YYYY-MM-DD
 **Total time:** X min
----
 
 #### Fundamentals
 - [ ] Scales
@@ -39,14 +40,12 @@ After every session, copy the template below and fill it in.
 - **BPM:**
 - **Problem:**
 - **Time:**
----
 
 #### Etude
 - Piece: No.
 - BPM:
 - Problem:
 - Time of focus:
----
 
 #### Repertoire
 - Piece:
@@ -54,12 +53,9 @@ After every session, copy the template below and fill it in.
 - BPM:
 - Note:
 - Time of focus:
----
 
 #### Today's win
 > (one thing that was better than last time)
----
 
 #### Tomorrow's focus
 >
----
