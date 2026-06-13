@@ -21,16 +21,16 @@ After every session, copy the template below and fill it in.
 ---
 
 ### YYYY-MM-DD
-**Total time:** X min
+**Total time:** 65 min
 
 #### Hanon
-- Piece: No. 
-- BPM: 
-- Techinique Focus:
-- Time of Focus:
+- Piece: No. 5
+- BPM: 70BPM 2 notes per Beat
+- Techinique Focus: tremolo, evenness, beats
+- Time of Focus: 7 min
 
 #### Fundamentals
-- [ ] Scales
+- [x] Scales
 - [ ] Arpeggios
 - [ ] Octaves
 - [ ] Jumps
@@ -42,26 +42,33 @@ After every session, copy the template below and fill it in.
 - [ ] Polyphonic control
 - [ ] Chord technique
 
-- **Key:**
-- **BPM:**
-- **Problem:**
-- **Time:**
+- **Key:** Bb Harmonic minor 
+- **BPM:** 70BPM 
+- **Problem:** uneven fingering
+- **Time:** 10min
 
 #### Etude
-- Piece: No.
-- BPM:
-- Problem:
-- Time of focus:
+- Piece: Czerny Etude Op849 No10. first 8 bars + second 8 bars
+- BPM: 60BPM -> 70BPM
+- Problem: not proficient. accents
+- Time of focus: 25min
 
 #### Repertoire
-- Piece:
-- Section practiced:
-- BPM:
-- Note:
-- Time of focus:
+- Piece: 巴赫旧约 arr. Liberte 
+- Section practiced: first 8 bars + next 4 bars
+- BPM: 70-90 BPM 1 note / beat
+- Note: accents
+- Time of focus: 20min
 
 #### Today's win
 > (one thing that was better than last time)
+1. scale is more even
+2. concentration
+3. czerny etude's first 8 bars are more proficient.
+4. picked out bars unsure about to practice
 
 #### Tomorrow's focus
 >
+1. Bb Harmonic minor and Melodic minor.
+2. etude first 8 bars proficiency
+3. repertoire first 16 bars
