@@ -34,7 +34,7 @@ After every session, copy the template below and fill it in.
 - [ ] Double notes (thirds and sixths)
 - [ ] Hand synchronization
 - [ ] Polyphonic control
-- [ ] Chord technique
+- [ ] Chord techinique
 
 - **Key:** Db major
 - **BPM:** 70BPM 2 notes / beat
