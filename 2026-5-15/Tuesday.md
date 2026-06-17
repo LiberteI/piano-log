@@ -74,3 +74,6 @@ After every session, copy the template below and fill it in.
 
 #### Tomorrow's focus
 >
+1. the unproficient section in etude.
+2. finger under.
+3. keep going!! Yiming!!
