@@ -26,7 +26,7 @@ After every session, copy the template below and fill it in.
 #### Hanon
 - Piece: No. 
 - BPM: 
-- Techinique Focus:
+- technique Focus:
 - Time of Focus:
 
 #### Fundamentals
@@ -40,7 +40,7 @@ After every session, copy the template below and fill it in.
 - [ ] Double notes (thirds and sixths)
 - [ ] Hand synchronization
 - [ ] Polyphonic control
-- [ ] Chord techinique
+- [ ] Chord technique
 
 - **Key:**
 - **BPM:**

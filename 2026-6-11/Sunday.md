@@ -23,14 +23,14 @@ After every session, copy the template below and fill it in.
 ### YYYY-MM-DD
 **Total time:** 68 min
 
-Background: watched 鲍释贤老师's piano techinique tutorial. 
-- followed his high finger action techinique practice method.
-- got educated about thumb-under techinique: when practicing scales, it is necessary to start to reach the next thumb's destination after pointing finger played its key.
+Background: watched 鲍释贤老师's piano technique tutorial. 
+- followed his high finger action technique practice method.
+- got educated about thumb-under technique: when practicing scales, it is necessary to start to reach the next thumb's destination after pointing finger played its key.
 
 #### Hanon
 - Piece: No. 5
 - BPM: 70
-- Techinique Focus: high finger action + evenness training
+- technique Focus: high finger action + evenness training
 - Time of Focus: 8min + 5min
 
 #### Fundamentals
@@ -44,7 +44,7 @@ Background: watched 鲍释贤老师's piano techinique tutorial.
 - [ ] Double notes (thirds and sixths)
 - [ ] Hand synchronization
 - [ ] Polyphonic control
-- [ ] Chord techinique
+- [ ] Chord technique
 
 - **Key:** Db Major
 - **BPM:** 70BPM 2 notes / beat

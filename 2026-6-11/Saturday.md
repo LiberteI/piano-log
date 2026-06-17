@@ -26,7 +26,7 @@ After every session, copy the template below and fill it in.
 #### Hanon
 - Piece: No. 5
 - BPM: 70BPM 2 notes per Beat
-- Techinique Focus: tremolo, evenness, beats
+- technique Focus: tremolo, evenness, beats
 - Time of Focus: 7 min
 
 #### Fundamentals
@@ -40,7 +40,7 @@ After every session, copy the template below and fill it in.
 - [ ] Double notes (thirds and sixths)
 - [ ] Hand synchronization
 - [ ] Polyphonic control
-- [ ] Chord techinique
+- [ ] Chord technique
 
 - **Key:** Bb Harmonic minor 
 - **BPM:** 70BPM 

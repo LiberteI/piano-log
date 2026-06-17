@@ -26,7 +26,7 @@ After every session, copy the template below and fill it in.
 #### Hanon
 - Piece: No. 5
 - BPM: 70 + 140
-- Techinique Focus: finger high action + evenness
+- technique Focus: finger high action + evenness
 - Time of Focus: 8 + 8min
 
 #### Fundamentals
@@ -40,11 +40,11 @@ After every session, copy the template below and fill it in.
 - [ ] Double notes (thirds and sixths)
 - [ ] Hand synchronization
 - [ ] Polyphonic control
-- [ ] Chord techinique
+- [ ] Chord technique
 
 - **Key:** Db major Bb Harmonic & melodic minor
 - **BPM:** 140 1 notes per beat
-- **Problem:** finger under techinique is not very proficient. It takes a second to cross thumb after it did its work
+- **Problem:** finger under technique is not very proficient. It takes a second to cross thumb after it did its work
 - **Time:** 15min
 
 #### Etude
@@ -62,7 +62,7 @@ After every session, copy the template below and fill it in.
 
 #### Today's win
 > (one thing that was better than last time)
-1. I changed 70 BPM 2 notes to 140 BPM 1 notes. The notes started fall exactly on the beat. I plan to stablise the beat techinique before moving on to 70BPM 2 notes.
+1. I changed 70 BPM 2 notes to 140 BPM 1 notes. The notes started fall exactly on the beat. I plan to stablise the beat technique before moving on to 70BPM 2 notes.
 2. I practiced Db major scale and its minor scales in good quality.
 3. I covered the whole piece of the etude. everything is even and equally proficient. I also focused on musicality like crescendo, pianissimo, dynamic and piano. I spotted 2 worst sections and will cover it tommorow. I also completed the harmonic analysis and formal analysis. Spotted 2 harmonic mistakes written earlier.
 4. I covered the first page at a speed of 100BPM 1 note per beat. everything was evenly proficient and the tempo is stable. 

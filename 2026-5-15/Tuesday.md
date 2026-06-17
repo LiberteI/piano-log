@@ -26,7 +26,7 @@ After every session, copy the template below and fill it in.
 #### Hanon
 - Piece: No. 5
 - BPM: 70+140. 1 notes per beat
-- Techinique Focus: High finger action. evenness.
+- technique Focus: High finger action. evenness.
 - Time of Focus: 5 + 5 min
 
 #### Fundamentals
@@ -40,11 +40,11 @@ After every session, copy the template below and fill it in.
 - [ ] Double notes (thirds and sixths)
 - [ ] Hand synchronization
 - [ ] Polyphonic control
-- [ ] Chord techinique
+- [ ] Chord technique
 
 - **Key:** Db major Scale
 - **BPM:** 70 1 note per beat
-- **Problem:** null. Practiced finger under techinique. One problem might be not proficient
+- **Problem:** null. Practiced finger under technique. One problem might be not proficient. - thumb crossing still feels hesitant
 - **Time:** 20 min
 
 - **Key:** C major Arppegio
@@ -62,13 +62,13 @@ After every session, copy the template below and fill it in.
 - Piece: 巴赫旧约 arr. myself
 - Section practiced: first page
 - BPM: 100-110
-- Note: proficiency
+- Note: proficiency. accompaniment sometimes too loud
 - Time of focus: 20 min
 
 #### Today's win
 > (one thing that was better than last time)
 1. most of the practices have steady tempo. This is quite noticable comparing to 1 week ago.
-2. started to practice arppegios. finger under techinique seems to help a lot.
+2. started to practice arppegios. finger under technique seems to help a lot.
 3. i was very mindful of musicality in etude.
 4. always listened my own recordings after some practices, and made live improvements from my own feedback.
 
