@@ -21,7 +21,7 @@ After every session, copy the template below and fill it in.
 ---
 
 ### YYYY-MM-DD
-**Total time:** ~30 min
+**Total time:** ~40 min
 
 #### Hanon
 - Piece: No. 5
