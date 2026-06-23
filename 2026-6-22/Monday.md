@@ -1,0 +1,78 @@
+# 🎹 Piano Progress Log
+
+## How to use
+After every session, copy the template below and fill it in.
+
+---
+
+## Rules of Thumb
+1. Practice with full attention; do not play on autopilot.
+2. Prioritize control and musicality over raw BPM.
+3. Practice slowly enough to stay accurate and relaxed.
+4. Be honest about weak spots and work on the highest-leverage problem first.
+5. Consistency matters more than intensity.
+6. Stop or reset when focus is gone.
+
+## Session Template
+1. Each session belongs to a week folder.
+2. Weekly commitment is 7 to 10 hours.
+3. This file works as a scrum update.
+
+---
+
+### YYYY-MM-DD
+**Total time:** ~50 min
+
+#### Hanon
+- Piece: No. 5, 6
+- BPM: 70 4 notes/beat. 140 1 notes/beat
+- technique Focus: evenness + high finger action
+- Time of Focus: 5+5min
+
+#### Fundamentals
+- [x] Scales
+- [x] Arpeggios
+- [ ] Octaves
+- [ ] Jumps
+- [ ] Rotation
+- [ ] Voicing
+- [ ] Repeated notes
+- [ ] Double notes (thirds and sixths)
+- [ ] Hand synchronization
+- [ ] Polyphonic control
+- [ ] Chord technique
+
+- **Key:** Gb major scale
+- **BPM:** 140 1 note/beat
+- **Problem:** 1. 高音落键时机不同，听起来不是unison。2. 
+- **Time:** 15min
+
+- **Key:** C major arppegio
+- **BPM:** 70 BPM
+- **Problem:** 1. 双手弹感觉穿指难以为继，于是慢速光弹右手练习穿指。
+- **Time:** 10min
+
+#### Etude
+- Piece: No. 10
+- BPM: 80 2 notes/beat
+- Problem: some sections are still not quite proficient
+- Time of focus: 20min
+
+#### Repertoire
+- Piece: none
+- Section practiced:
+- BPM:
+- Note:
+- Time of focus:
+
+#### Today's win
+> (one thing that was better than last time)
+1. hanon is more even
+2. scale's finger under technique feels better
+3. fingers are more steady.
+4. used 附点练习 单手慢练for arpeggio.
+
+#### Tomorrow's focus
+>
+1. 高音区如何弹成unison
+2. arpeggio左右两手分开练 再合手
