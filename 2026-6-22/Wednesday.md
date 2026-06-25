@@ -1,0 +1,81 @@
+# 🎹 Piano Progress Log
+
+## How to use
+After every session, copy the template below and fill it in.
+
+---
+
+## Rules of Thumb
+1. Practice with full attention; do not play on autopilot.
+2. Prioritize control and musicality over raw BPM.
+3. Practice slowly enough to stay accurate and relaxed.
+4. Be honest about weak spots and work on the highest-leverage problem first.
+5. Consistency matters more than intensity.
+6. Stop or reset when focus is gone.
+
+## Session Template
+1. Each session belongs to a week folder.
+2. Weekly commitment is 7 to 10 hours.
+3. This file works as a scrum update.
+
+---
+
+### YYYY-MM-DD
+**Total time:** 80 min
+
+#### Hanon
+- Piece: No. 5, 6
+- BPM: 70 150
+- technique Focus: evenness and high finger technique
+- Time of Focus: 15 min
+- Problem: I found hanon has the same problem: a lot of notes are not unison.
+
+#### Fundamentals
+- [x] Scales
+- [x] Arpeggios
+- [ ] Octaves
+- [ ] Jumps
+- [ ] Rotation
+- [ ] Voicing
+- [ ] Repeated notes
+- [ ] Double notes (thirds and sixths)
+- [ ] Hand synchronization
+- [ ] Polyphonic control
+- [ ] Chord technique
+
+- **Key:** Gb major
+- **BPM:** 70 1 note per beat
+- **Problem:** some notes do not fall as unison. it might becasue fingers are not independent.
+- **Time:** 10 min
+
+- **Key:** C major
+- **BPM:** 70 1 note per beat 
+- **Problem:** left hand: thumb sounds significantly lower than other fingers because of finger under. Struggle to use fingers under. 
+- **Time:** 10 min
+
+#### Etude
+- Piece: No. 10
+- BPM: 80-90-100-110
+- Problem: accent on second system bar 3. pianissimo not sound good becasue 110 is too fast
+- Time of focus: 22 min
+
+#### Repertoire
+- Piece: 巴赫旧约 arr by myself
+- Section practiced: first page and the first phrase after first page
+- BPM: 120 1 note/beat 60 1 note per beat
+- Note: sight reading the new part. need to mark fingering tomorrow and keep practicing
+- Time of focus: 20min
+
+#### Today's win
+> (one thing that was better than last time)
+1. found problem in hanon.
+2. left hand arpeggio feels better than last time.
+
+#### Tomorrow's focus
+>
+1. keep the consistency.
+2. listen carefully to hanon sound
+3. 4 octaves scale practice all together+minor scales
+4. arpeggios. hands separate. 
+4. etude. might need to practice slow
+6. repertoir keep practicing new sections.

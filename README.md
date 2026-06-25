@@ -28,6 +28,7 @@ After every session, copy the template below and fill it in.
 - BPM: 
 - technique Focus:
 - Time of Focus:
+- Problem: 
 
 #### Fundamentals
 - [ ] Scales
