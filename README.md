@@ -1,12 +1,12 @@
 # Piano Practice Log
 
-This repository tracks my piano practice consistency in Markdown and generates structured JSON that my portfolio website can consume. It is both a personal practice archive and a small automation project built around simple file-based data.
+This repository exists for two reasons: version control for my piano practice logs, and exporting a JSON file of practiced days for another project to consume.
 
 ## Why This Exists
 
-This is not an app. It is a lightweight pipeline for turning weekly piano practice logs into machine-readable data.
+This is not an app. It is a small file-based repository for storing piano logs in Git and generating one machine-readable artifact from them.
 
-The logs live here in Markdown because they are easy to write, review, and keep in version control. A TypeScript script then converts that history into a JSON artifact that another project can read without parsing Markdown directly.
+The Markdown files are the source of truth. The generator script reads those logs and exports practiced-day data as JSON so my portfolio does not need to parse Markdown directly.
 
 ## Repository Structure
 
@@ -23,13 +23,13 @@ piano-log/
 
 ## Generated Data
 
-The main generated artifact is:
+The generated artifact is:
 
 ```text
 generated/practice-days.json
 ```
 
-It provides a normalized daily practice map that another project can consume. My portfolio website can fetch this file and use it to render a practice contribution grid or a piano activity section.
+It provides a daily practiced/not-practiced map that another project can consume. My portfolio website can fetch this file and use it to render a practice contribution grid or a piano activity section.
 
 Example:
 
@@ -74,19 +74,15 @@ Running the generator reads the Markdown logs in `logs/` and overwrites `generat
 
 ## Design Principles
 
-- Markdown logs are human-readable and easy to maintain.
-- JSON output is machine-readable and easy for other projects to consume.
-- GitHub is the source of truth for the practice history.
-- The portfolio website is only a consumer of generated data.
-- The project stays intentionally simple and avoids unnecessary complexity.
+- Markdown logs are the source of truth.
+- Git provides version control for the practice history.
+- JSON export is only for practiced-day data.
+- The portfolio website is only a consumer.
+- The repository stays intentionally simple.
 
-## Future Direction
+## Scope
 
-Possible small extensions:
+The scope of this repository is intentionally narrow:
 
-- streak calculation
-- total practice days
-- recent session summary
-- GitHub Actions automation
-
-The scope will stay focused on lightweight logging and data generation.
+- store piano logs in version control
+- export practiced-day JSON
