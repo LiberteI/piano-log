@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate": "tsx scripts/generate-practice-json.ts"
+    "generate:data": "tsx scripts/generate-practice-json.ts",
+    "generate:readme": "tsx scripts/generate-readme-grid.ts",
+    "generate": "npm run generate:data && npm run generate:readme"
   },
   "devDependencies": {
     "@types/node": "^24.0.4",
