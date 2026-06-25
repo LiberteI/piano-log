@@ -2,123 +2,6 @@
 
 This repository exists for two reasons: version control for my piano practice logs, and exporting a JSON file of practiced days for another project to consume.
 
-## 2026 Practice Grid
-
-<!-- PRACTICE_GRID_START -->
-
-Generated from `generated/practice-days.json`. Last updated: `2026-06-25`.
-
-```text
-January
-Su Mo Tu We Th Fr Sa
-            ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-```
-```text
-February
-Su Mo Tu We Th Fr Sa
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-```
-```text
-March
-Su Mo Tu We Th Fr Sa
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜            
-```
-```text
-April
-Su Mo Tu We Th Fr Sa
-         ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜      
-```
-```text
-May
-Su Mo Tu We Th Fr Sa
-               ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜                  
-```
-```text
-June
-Su Mo Tu We Th Fr Sa
-   ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ 🟩 🟩 🟩
-🟩 🟩 🟩 🟩 🟩 ⬜ ⬜
-⬜ 🟩 🟩 🟩 ⬜ ⬜ ⬜
-⬜ ⬜ ⬜            
-```
-```text
-July
-Su Mo Tu We Th Fr Sa
-         ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜   
-```
-```text
-August
-Su Mo Tu We Th Fr Sa
-                  ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜               
-```
-```text
-September
-Su Mo Tu We Th Fr Sa
-      ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜         
-```
-```text
-October
-Su Mo Tu We Th Fr Sa
-            ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-```
-```text
-November
-Su Mo Tu We Th Fr Sa
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜               
-```
-```text
-December
-Su Mo Tu We Th Fr Sa
-      ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜
-⬜ ⬜ ⬜ ⬜ ⬜      
-```
-<!-- PRACTICE_GRID_END -->
-
 ## Why This Exists
 
 This is not an app. It is a small file-based repository for storing piano logs in Git and generating one machine-readable artifact from them.
@@ -132,7 +15,6 @@ piano-log/
 ├── logs/
 ├── scripts/
 │   └── generate-practice-json.ts
-│   └── generate-readme-grid.ts
 ├── generated/
 │   └── practice-days.json
 ├── package.json
@@ -188,7 +70,7 @@ Generate the JSON artifact:
 npm run generate
 ```
 
-Running the generator reads the Markdown logs in `logs/`, overwrites `generated/practice-days.json`, and refreshes the generated 2026 grid in `README.md`.
+Running the generator reads the Markdown logs in `logs/` and overwrites `generated/practice-days.json` with the latest deterministic output.
 
 ## Design Principles
 
