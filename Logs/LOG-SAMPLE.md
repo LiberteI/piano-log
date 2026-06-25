@@ -17,21 +17,24 @@ After every session, copy the template below and fill it in.
 1. Each session belongs to a week folder.
 2. Weekly commitment is 7 to 10 hours.
 3. This file works as a scrum update.
+4. Week folders use the Monday of that week: `YYYY-MM-DD/`.
+5. Daily logs use the real date as the filename: `YYYY-MM-DD.md`.
+6. The filename is the source of truth for the practice date, so do not repeat the date as a title inside the file.
 
 ---
 
-### YYYY-MM-DD
-**Total time:** ~50 min
+**Total time:** X min
 
 #### Hanon
-- Piece: No. 5, 6
-- BPM: 70 4 notes/beat. 140 1 notes/beat
-- technique Focus: evenness + high finger action
-- Time of Focus: 5+5min
+- Piece: No. 
+- BPM: 
+- technique Focus:
+- Time of Focus:
+- Problem: 
 
 #### Fundamentals
-- [x] Scales
-- [x] Arpeggios
+- [ ] Scales
+- [ ] Arpeggios
 - [ ] Octaves
 - [ ] Jumps
 - [ ] Rotation
@@ -42,24 +45,19 @@ After every session, copy the template below and fill it in.
 - [ ] Polyphonic control
 - [ ] Chord technique
 
-- **Key:** Gb major scale
-- **BPM:** 140 1 note/beat
-- **Problem:** 1. 高音落键时机不同，听起来不是unison。2. 
-- **Time:** 15min
-
-- **Key:** C major arppegio
-- **BPM:** 70 BPM
-- **Problem:** 1. 双手弹感觉穿指难以为继，于是慢速光弹右手练习穿指。
-- **Time:** 10min
+- **Key:**
+- **BPM:**
+- **Problem:**
+- **Time:**
 
 #### Etude
-- Piece: No. 10
-- BPM: 80 2 notes/beat
-- Problem: some sections are still not quite proficient
-- Time of focus: 20min
+- Piece: No.
+- BPM:
+- Problem:
+- Time of focus:
 
 #### Repertoire
-- Piece: none
+- Piece:
 - Section practiced:
 - BPM:
 - Note:
@@ -67,12 +65,6 @@ After every session, copy the template below and fill it in.
 
 #### Today's win
 > (one thing that was better than last time)
-1. hanon is more even
-2. scale's finger under technique feels better
-3. fingers are more steady.
-4. used 附点练习 单手慢练for arpeggio.
 
 #### Tomorrow's focus
 >
-1. 高音区如何弹成unison
-2. arpeggio左右两手分开练 再合手
