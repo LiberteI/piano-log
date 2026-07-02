@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -24,3 +27,16 @@ jobs:
 
       - name: Generate practice JSON
         run: npm run generate
+
+      - name: Commit root practice JSON
+        run: |
+          if git diff --quiet -- practice-days.json; then
+            echo "No root practice JSON changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add practice-days.json
+          git commit -m "chore: update practice-days.json"
+          git push

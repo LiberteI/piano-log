@@ -15,8 +15,7 @@ piano-log/
 ├── logs/
 ├── scripts/
 │   └── generate-practice-json.ts
-├── generated/
-│   └── practice-days.json
+├── practice-days.json
 ├── package.json
 └── README.md
 ```
@@ -26,7 +25,7 @@ piano-log/
 The generated artifact is:
 
 ```text
-generated/practice-days.json
+practice-days.json
 ```
 
 It provides a daily practiced/not-practiced map that another project can consume. My portfolio website can fetch this file and use it to render a practice contribution grid or a piano activity section.
@@ -51,7 +50,7 @@ weekly Markdown logs
         ↓
 TypeScript generator script
         ↓
-generated/practice-days.json
+practice-days.json
         ↓
 portfolio website consumes JSON
 ```
@@ -70,7 +69,7 @@ Generate the JSON artifact:
 npm run generate
 ```
 
-Running the generator reads the Markdown logs in `logs/` and overwrites `generated/practice-days.json` with the latest deterministic output.
+Running the generator reads the Markdown logs in `logs/` and overwrites `practice-days.json` at the repository root with the latest deterministic output.
 
 ## Design Principles
 

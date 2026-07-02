@@ -1,4 +1,4 @@
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 interface PracticeEntry {
@@ -8,8 +8,7 @@ interface PracticeEntry {
 
 const REPO_ROOT = process.cwd();
 const LOGS_DIR = path.join(REPO_ROOT, "logs");
-const OUTPUT_DIR = path.join(REPO_ROOT, "generated");
-const OUTPUT_FILE = path.join(OUTPUT_DIR, "practice-days.json");
+const OUTPUT_FILE = path.join(REPO_ROOT, "practice-days.json");
 const DATE_FILENAME_PATTERN = /^(\d{4}-\d{2}-\d{2})\.md$/;
 const TOTAL_TIME_PATTERN = /\*\*Total time:\*\*\s*([^\n\r]+)/i;
 
@@ -17,7 +16,6 @@ async function main(): Promise<void> {
   const practiceFiles = await collectPracticeFiles(LOGS_DIR);
   const payload = await parsePracticeEntries(practiceFiles);
 
-  await mkdir(OUTPUT_DIR, { recursive: true });
   await writeFile(OUTPUT_FILE, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
 
   console.log(`Generated ${path.relative(REPO_ROOT, OUTPUT_FILE)}`);
