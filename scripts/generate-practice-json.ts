@@ -1,11 +1,9 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-type PracticeDayMap = Record<string, boolean>;
-
-interface PracticeDaysPayload {
-  days: PracticeDayMap;
-  lastUpdated: string;
+interface PracticeEntry {
+  date: string;
+  practiceTime: number;
 }
 
 const REPO_ROOT = process.cwd();
@@ -17,8 +15,7 @@ const TOTAL_TIME_PATTERN = /\*\*Total time:\*\*\s*([^\n\r]+)/i;
 
 async function main(): Promise<void> {
   const practiceFiles = await collectPracticeFiles(LOGS_DIR);
-  const practiceDays = await parsePracticeDays(practiceFiles);
-  const payload = buildPayload(practiceDays, getTodayIsoDate());
+  const payload = await parsePracticeEntries(practiceFiles);
 
   await mkdir(OUTPUT_DIR, { recursive: true });
   await writeFile(OUTPUT_FILE, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
@@ -58,8 +55,8 @@ async function collectPracticeFilesRecursive(currentDir: string): Promise<string
   return files;
 }
 
-async function parsePracticeDays(filePaths: string[]): Promise<PracticeDayMap> {
-  const practiceDays: PracticeDayMap = {};
+async function parsePracticeEntries(filePaths: string[]): Promise<PracticeEntry[]> {
+  const practiceEntries: PracticeEntry[] = [];
 
   for (const filePath of filePaths) {
     const fileName = path.basename(filePath);
@@ -71,86 +68,38 @@ async function parsePracticeDays(filePaths: string[]): Promise<PracticeDayMap> {
 
     const practiceDate = dateMatch[1];
     const markdown = await readFile(filePath, "utf8");
-    const hasCompletedSession = parseCompletedPracticeSession(markdown);
+    const practiceTime = parsePracticeTimeMinutes(markdown);
 
-    // If multiple logs ever exist for one day, any completed session makes the day true.
-    practiceDays[practiceDate] = Boolean(practiceDays[practiceDate] || hasCompletedSession);
+    if (practiceTime === null) {
+      continue;
+    }
+
+    practiceEntries.push({
+      date: practiceDate,
+      practiceTime
+    });
   }
 
-  return practiceDays;
+  practiceEntries.sort((left, right) => left.date.localeCompare(right.date));
+  return practiceEntries;
 }
 
-function parseCompletedPracticeSession(markdown: string): boolean {
+function parsePracticeTimeMinutes(markdown: string): number | null {
   const totalTimeMatch = markdown.match(TOTAL_TIME_PATTERN);
 
   if (!totalTimeMatch) {
-    return false;
+    return null;
   }
 
   const rawTotalTime = totalTimeMatch[1].trim();
   const minuteMatch = rawTotalTime.match(/(\d+)/);
 
   if (!minuteMatch) {
-    return false;
+    return null;
   }
 
   const totalMinutes = Number.parseInt(minuteMatch[1], 10);
-  return Number.isFinite(totalMinutes) && totalMinutes > 0;
-}
-
-function buildPayload(practiceDays: PracticeDayMap, todayIsoDate: string): PracticeDaysPayload {
-  const sortedPracticeDates = Object.keys(practiceDays).sort();
-
-  if (sortedPracticeDates.length === 0) {
-    return {
-      days: {},
-      lastUpdated: todayIsoDate
-    };
-  }
-
-  const firstPracticeDate = sortedPracticeDates[0];
-  const days: PracticeDayMap = {};
-
-  for (const isoDate of enumerateInclusiveDateRange(firstPracticeDate, todayIsoDate)) {
-    days[isoDate] = practiceDays[isoDate] ?? false;
-  }
-
-  return {
-    days,
-    lastUpdated: todayIsoDate
-  };
-}
-
-function* enumerateInclusiveDateRange(startIsoDate: string, endIsoDate: string): Generator<string> {
-  let cursor = parseIsoDate(startIsoDate);
-  const end = parseIsoDate(endIsoDate);
-
-  while (cursor.getTime() <= end.getTime()) {
-    yield formatIsoDate(cursor);
-    cursor = addDays(cursor, 1);
-  }
-}
-
-function parseIsoDate(isoDate: string): Date {
-  const [year, month, day] = isoDate.split("-").map((part) => Number.parseInt(part, 10));
-  return new Date(year, month - 1, day);
-}
-
-function formatIsoDate(date: Date): string {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-function addDays(date: Date, days: number): Date {
-  const next = new Date(date);
-  next.setDate(next.getDate() + days);
-  return next;
-}
-
-function getTodayIsoDate(): string {
-  return formatIsoDate(new Date());
+  return Number.isFinite(totalMinutes) ? totalMinutes : null;
 }
 
 main().catch((error: unknown) => {
