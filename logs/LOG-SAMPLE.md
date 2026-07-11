@@ -51,7 +51,7 @@ After every session, copy the template below and fill it in.
 - **Time:**
 
 #### Etude
-- Piece: No.
+- Piece: 
 - BPM:
 - Problem:
 - Time of focus:
