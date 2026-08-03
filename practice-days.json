@@ -166,5 +166,13 @@
   {
     "date": "2026-07-30",
     "practiceTime": 70
+  },
+  {
+    "date": "2026-08-01",
+    "practiceTime": 50
+  },
+  {
+    "date": "2026-08-02",
+    "practiceTime": 40
   }
 ]
