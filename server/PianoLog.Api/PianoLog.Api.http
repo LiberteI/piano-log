@@ -1,0 +1,6 @@
+@PianoLog.Api_HostAddress = http://localhost:5221
+
+GET {{PianoLog.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

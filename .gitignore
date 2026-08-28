@@ -1,4 +1,37 @@
+# Dependencies
 node_modules/
-.DS_Store
+
+# Frontend build output and tooling caches
+client/dist/
+client/.vite/
+
+# .NET build output and IDE files
+**/[Bb]in/
+**/[Oo]bj/
+.vs/
+*.user
+*.suo
+*.rsuser
+
+# Local configuration and secrets
+.env
+.env.*
+*.env
+!.env.example
+!*\.env.example
+server/PianoLog.Api/appsettings.Development.json
+
+# Test output
+coverage/
+TestResults/
+
+# Optional local MongoDB volume directories
+mongo-data/
+mongodb-data/
+
+# Repository-generated files
 generated/
 practice-days.json
+
+# Operating system files
+.DS_Store
