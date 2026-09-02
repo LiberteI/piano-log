@@ -1,13 +1,5 @@
 {
   "name": "piano-log",
   "private": true,
-  "type": "module",
-  "scripts": {
-    "generate": "tsx scripts/generate-practice-json.ts"
-  },
-  "devDependencies": {
-    "@types/node": "^24.0.4",
-    "typescript": "^5.8.3",
-    "tsx": "^4.20.3"
-  }
+  "type": "module"
 }
