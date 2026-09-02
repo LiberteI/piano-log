@@ -1,0 +1,116 @@
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+.logger-page {
+  --page-background: #0a0b0b;
+  --card-background: #131414;
+  --input-background: #1b1c1c;
+  --sidebar-background: #090a0a;
+  --border-color: #303232;
+  --muted-text: #929292;
+  --primary-text: #f2f2f2;
+
+  box-sizing: border-box;
+  min-height: 100svh;
+  padding: 2rem;
+  background: var(--page-background);
+  color: var(--primary-text);
+}
+
+.logger-page *,
+.logger-page *::before,
+.logger-page *::after {
+  box-sizing: border-box;
+}
+
+.logger-page h1,
+.logger-page h2 {
+  color: var(--primary-text);
+}
+
+.logger-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 46rem;
+  margin: 0 auto 1rem;
+}
+
+.logger-header span {
+  color: #efc52e;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.logger-header h1 {
+  margin: 0;
+}
+
+.logger-card {
+  display: grid;
+  gap: 1rem;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  background: var(--card-background);
+}
+
+.logger-card label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted-text);
+}
+
+.logger-card input,
+.logger-card textarea {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  background: var(--input-background);
+  color: var(--primary-text);
+}
+
+.logger-card input,
+.logger-card textarea {
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.logger-card textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.logger-card input:focus,
+.logger-card textarea:focus {
+  border-color: #efc52e;
+  background: #202121;
+  box-shadow: 0 0 0 3px rgb(239 197 46 / 14%);
+}
+
+.logger-card button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  background: var(--input-background);
+  color: var(--primary-text);
+  cursor: pointer;
+}
+
+.logger-card button:hover {
+  border-color: #efc52e;
+}

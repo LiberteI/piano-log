@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { CalendarDays, Clock3, Goal, ListMusic, Music2, Save, Send, Trophy } from 'lucide-react'
+import './logger.css'
 
 const PieceCard = (type) => {
   return (
@@ -80,12 +81,10 @@ const ReflectionForm = (type) => {
   return (
     <div>
       <h2><Trophy aria-hidden='true' color='#efc52e' size={18} /> Today's Win</h2>
-      <label htmlFor="">One thing that was better than last time</label>
-      <input type="text" />
+      <textarea aria-label="Today's win" placeholder="One thing that was better than last time" />
       
       <h2><Goal aria-hidden='true' color='#efc52e' size={18} /> Tomorrow's Focus</h2>
-      <label htmlFor="">What will you work on next?</label> 
-      <input type="text" />
+      <textarea aria-label="Tomorrow's focus" placeholder="What will you work on next?" />
     </div>
   )
 }
@@ -120,11 +119,13 @@ const ActionButtons = () => {
 function Logger() {
 
   return (
-    <div>
-      <h1>|</h1>
-      <h1>Piano Logger</h1>
+    <div className='logger-page'>
+      <header className='logger-header'>
+        <span aria-hidden='true'>|</span>
+        <h1>Piano Logger</h1>
+      </header>
 
-      <div>
+      <div className='logger-card'>
         <Date />
 
         <PracticeTime />
