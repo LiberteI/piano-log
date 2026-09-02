@@ -23,6 +23,7 @@ Check the configured values locally. This command prints secret values, so do
 not run it in a recorded, shared, or pasted terminal session:
 
 ```bash
+cd server/PianoLog.Api
 dotnet user-secrets list
 ```
 
