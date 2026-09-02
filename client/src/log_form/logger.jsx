@@ -97,20 +97,22 @@ function Logger() {
       <h1>|</h1>
       <h1>Piano Logger</h1>
 
-      <label htmlFor=""><CalendarDays aria-hidden='true' color='#efc52e' size={18} /> Practice Date</label>
-      <input type="text" />
+      <div>
+        <label htmlFor=""><CalendarDays aria-hidden='true' color='#efc52e' size={18} /> Practice Date</label>
+        <input type="text" />
 
-      <label htmlFor=""><Clock3 aria-hidden='true' color='#efc52e' size={18} /> Total Practice Time</label>
-      <input type="text" />
+        <label htmlFor=""><Clock3 aria-hidden='true' color='#efc52e' size={18} /> Total Practice Time</label>
+        <input type="text" />
 
-      <FundamentalForm />
+        <FundamentalForm />
 
-      <PieceForm />
+        <PieceForm />
 
-      <ReflectionForm />
+        <ReflectionForm />
 
-      <button><Save aria-hidden='true' color='#efc52e' size={16} /> Save as Draft</button>
-      <button><Send aria-hidden='true' color='#efc52e' size={16} /> Submit</button>
+        <button><Save aria-hidden='true' color='#efc52e' size={16} /> Save as Draft</button>
+        <button><Send aria-hidden='true' color='#efc52e' size={16} /> Submit</button>
+      </div>
     </div>
   )
 }
