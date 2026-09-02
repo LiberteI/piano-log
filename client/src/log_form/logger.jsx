@@ -90,6 +90,33 @@ const ReflectionForm = (type) => {
   )
 }
 
+const Date = () => {
+  return (
+    <>
+      <label htmlFor="practice-date"><CalendarDays aria-hidden='true' color='#efc52e' size={18} /> Practice Date</label>
+      <input id="practice-date" type="text" />
+    </>
+  )
+}
+
+const PracticeTime = () => {
+  return (
+    <>
+      <label htmlFor="practice-time"><Clock3 aria-hidden='true' color='#efc52e' size={18} /> Total Practice Time</label>
+      <input id="practice-time" type="text" />
+    </>
+  )
+}
+
+const ActionButtons = () => {
+  return (
+    <>
+      <button><Save aria-hidden='true' color='#efc52e' size={16} /> Save as Draft</button>
+      <button><Send aria-hidden='true' color='#efc52e' size={16} /> Submit</button>
+    </>
+  )
+}
+
 function Logger() {
 
   return (
@@ -98,11 +125,9 @@ function Logger() {
       <h1>Piano Logger</h1>
 
       <div>
-        <label htmlFor=""><CalendarDays aria-hidden='true' color='#efc52e' size={18} /> Practice Date</label>
-        <input type="text" />
+        <Date />
 
-        <label htmlFor=""><Clock3 aria-hidden='true' color='#efc52e' size={18} /> Total Practice Time</label>
-        <input type="text" />
+        <PracticeTime />
 
         <FundamentalForm />
 
@@ -110,8 +135,7 @@ function Logger() {
 
         <ReflectionForm />
 
-        <button><Save aria-hidden='true' color='#efc52e' size={16} /> Save as Draft</button>
-        <button><Send aria-hidden='true' color='#efc52e' size={16} /> Submit</button>
+        <ActionButtons />
       </div>
     </div>
   )
