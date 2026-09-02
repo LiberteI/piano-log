@@ -42,13 +42,15 @@ body,
 }
 
 .logger-header span {
-  color: #efc52e;
+  color: #f2b53d;
   font-size: 2rem;
   line-height: 1;
 }
 
 .logger-header h1 {
   margin: 0;
+  padding: 1rem 0;
+  font-size: 3rem;
 }
 
 .logger-card {
@@ -62,6 +64,28 @@ body,
   background: var(--card-background);
 }
 
+.logger-session-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.logger-session-fields label {
+  margin-bottom: 0.35rem;
+}
+
+.logger-duration-selects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+@media (max-width: 40rem) {
+  .logger-session-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
 .logger-card label {
   display: flex;
   align-items: center;
@@ -70,7 +94,8 @@ body,
 }
 
 .logger-card input,
-.logger-card textarea {
+.logger-card textarea,
+.logger-card select {
   width: 100%;
   min-height: 2.5rem;
   padding: 0.5rem 0.75rem;
@@ -81,7 +106,8 @@ body,
 }
 
 .logger-card input,
-.logger-card textarea {
+.logger-card textarea,
+.logger-card select {
   outline: none;
   transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
 }
@@ -92,10 +118,17 @@ body,
 }
 
 .logger-card input:focus,
-.logger-card textarea:focus {
-  border-color: #efc52e;
+.logger-card textarea:focus,
+.logger-card select:focus {
+  border-color: #f2b53d;
   background: #202121;
-  box-shadow: 0 0 0 3px rgb(239 197 46 / 14%);
+  box-shadow: 0 0 0 3px rgb(242 181 61 / 14%);
+}
+
+.logger-card input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1);
+  opacity: 1;
 }
 
 .logger-card button {
@@ -112,5 +145,38 @@ body,
 }
 
 .logger-card button:hover {
-  border-color: #efc52e;
+  border-color: #f2b53d;
+}
+
+.logger-card .logger-add-button,
+.logger-card .logger-add-button:hover {
+  border-color: #f2b53d;
+  color: #f2b53d;
+}
+
+.logger-card .logger-add-button {
+  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.logger-card .logger-add-button:hover {
+  transform: scale(1.03);
+}
+
+.logger-card .logger-save-button {
+  border-color: #f2b53d;
+  background: #f2b53d;
+  color: #090a0a;
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.logger-card .logger-save-button:hover {
+  border-color: #f2b53d;
+  background: #f2b53d;
+  box-shadow: 0 0.45rem 1rem rgb(242 181 61 / 22%);
+  transform: translateY(-2px);
+}
+
+.logger-card .logger-save-button:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
