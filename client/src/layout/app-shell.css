@@ -1,0 +1,16 @@
+.app-shell {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  min-height: 100svh;
+  background: #0a0b0b;
+}
+
+.app-content {
+  min-width: 0;
+}
+
+@media (max-width: 44rem) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+}

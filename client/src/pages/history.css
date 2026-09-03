@@ -1,0 +1,72 @@
+.history-page {
+  min-height: 100svh;
+  padding: clamp(2rem, 5vw, 5rem);
+  background: #0a0b0b;
+  color: #f2f2f2;
+}
+
+.history-header {
+  max-width: 46rem;
+  margin: 0 auto 2rem;
+}
+
+.history-header p {
+  margin: 0 0 0.6rem;
+  color: #f2b53d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.history-header h1 {
+  margin: 0;
+  color: #f2f2f2;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 1;
+}
+
+.history-header span {
+  display: block;
+  margin-top: 0.9rem;
+  color: #929292;
+}
+
+.history-empty {
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px dashed #303232;
+  border-radius: 0.8rem;
+  background: #131414;
+}
+
+.history-empty > svg {
+  color: #f2b53d;
+}
+
+.history-empty h2,
+.history-empty p {
+  margin: 0;
+}
+
+.history-empty h2 {
+  color: #f2f2f2;
+  font-size: 1.2rem;
+}
+
+.history-empty p,
+.history-empty div {
+  color: #929292;
+}
+
+.history-empty div {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
