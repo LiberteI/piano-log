@@ -2,28 +2,40 @@ import { useState } from 'react'
 import { ArrowRight, CalendarDays, Clock3, Goal, ListMusic, Music2, Save, Trash2, Trophy } from 'lucide-react'
 import './logger.css'
 
+const optionalString = (formData, name) => {
+  const value = formData.get(name)?.toString().trim()
+  return value || null
+}
+
+const optionalNumber = (formData, name) => {
+  const value = optionalString(formData, name)
+  return value === null ? null : Number(value)
+}
+
+const hasValues = (entry) => Object.values(entry).some((value) => value !== null)
+
 const PieceCard = ({ id, onDelete }) => {
   return (
     <div className='logger-dynamic-card'>
       <div className='logger-piece-fields'>
         <div className='logger-field'>
           <label htmlFor={`piece-${id}-name`}>Piece Name / No.</label>
-          <input id={`piece-${id}-name`} type="text" />
+          <input id={`piece-${id}-name`} name={`piece-${id}-name`} type="text" />
         </div>
 
         <div className='logger-field'>
           <label htmlFor={`piece-${id}-bpm`}>BPM</label>
-          <input id={`piece-${id}-bpm`} type="text" />
+          <input id={`piece-${id}-bpm`} name={`piece-${id}-bpm`} type="number" min='1' />
         </div>
 
         <div className='logger-field'>
           <label htmlFor={`piece-${id}-time`}>Time of Focus</label>
-          <input id={`piece-${id}-time`} type="text" />
+          <input id={`piece-${id}-time`} name={`piece-${id}-time`} type="number" min='1' />
         </div>
 
         <div className='logger-field'>
           <label htmlFor={`piece-${id}-problem`}>Problem</label>
-          <input id={`piece-${id}-problem`} type="text" />
+          <input id={`piece-${id}-problem`} name={`piece-${id}-problem`} type="text" />
         </div>
       </div>
 
@@ -40,22 +52,22 @@ const FundamentalCard = ({ id, onDelete }) => {
       <div className='logger-piece-fields'>
         <div className='logger-field'>
           <label htmlFor={`fundamental-${id}-key`}>Key</label>
-          <input id={`fundamental-${id}-key`} type="text" />
+          <input id={`fundamental-${id}-key`} name={`fundamental-${id}-key`} type="text" />
         </div>
 
         <div className='logger-field'>
           <label htmlFor={`fundamental-${id}-bpm`}>BPM</label>
-          <input id={`fundamental-${id}-bpm`} type="text" />
+          <input id={`fundamental-${id}-bpm`} name={`fundamental-${id}-bpm`} type="number" min='1' />
         </div>
 
         <div className='logger-field'>
           <label htmlFor={`fundamental-${id}-time`}>Time of Focus</label>
-          <input id={`fundamental-${id}-time`} type="text" />
+          <input id={`fundamental-${id}-time`} name={`fundamental-${id}-time`} type="number" min='1' />
         </div>
 
         <div className='logger-field'>
           <label htmlFor={`fundamental-${id}-problem`}>Problem</label>
-          <input id={`fundamental-${id}-problem`} type="text" />
+          <input id={`fundamental-${id}-problem`} name={`fundamental-${id}-problem`} type="text" />
         </div>
       </div>
 
@@ -90,10 +102,10 @@ const ReflectionForm = (type) => {
   return (
     <div>
       <h2><Trophy aria-hidden='true' color='#f2b53d' size={18} /> Today's Win</h2>
-      <textarea aria-label="Today's win" placeholder="One thing that was better than last time" />
+      <textarea name='todaysWin' aria-label="Today's win" placeholder="One thing that was better than last time" />
       
       <h2><Goal aria-hidden='true' color='#f2b53d' size={18} /> Tomorrow's Focus</h2>
-      <textarea aria-label="Tomorrow's focus" placeholder="What will you work on next?" />
+      <textarea name='tomorrowsFocus' aria-label="Tomorrow's focus" placeholder="What will you work on next?" />
     </div>
   )
 }
@@ -102,7 +114,7 @@ const PracticeDate = ({ maxDate }) => {
   return (
     <div className='logger-field'>
       <label htmlFor="practice-date"><CalendarDays aria-hidden='true' color='#f2b53d' size={18} /> Practice Date</label>
-      <input id="practice-date" type="date" max={maxDate} required />
+      <input id="practice-date" name='practiceDate' type="date" max={maxDate} required />
     </div>
   )
 }
@@ -128,15 +140,19 @@ const PracticeTime = () => {
   )
 }
 
-const ActionButtons = () => {
+const ActionButtons = ({ isSaving }) => {
   return (
-    <button className='logger-save-button' type='submit'><Save aria-hidden='true' size={16} /> Save Log <ArrowRight aria-hidden='true' size={16} /></button>
+    <button className='logger-save-button' type='submit' disabled={isSaving}>
+      <Save aria-hidden='true' size={16} /> {isSaving ? 'Saving...' : 'Save Log'} <ArrowRight aria-hidden='true' size={16} />
+    </button>
   )
 }
 
 function Logger() {
   const [fundamentalItems, setFundamentalItems] = useState([])
   const [pieces, setPieces] = useState([])
+  const [isSaving, setIsSaving] = useState(false)
+  const [submissionMessage, setSubmissionMessage] = useState('')
   const currentDate = new Date()
   const today = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`
 
@@ -156,8 +172,61 @@ function Logger() {
     setPieces((items) => items.filter((pieceId) => pieceId !== id))
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const fundamentals = fundamentalItems.map((id) => ({
+      key: optionalString(formData, `fundamental-${id}-key`),
+      bpm: optionalNumber(formData, `fundamental-${id}-bpm`),
+      timeOfFocusMinutes: optionalNumber(formData, `fundamental-${id}-time`),
+      problem: optionalString(formData, `fundamental-${id}-problem`),
+    })).filter(hasValues)
+    const loggedPieces = pieces.map((id) => ({
+      name: optionalString(formData, `piece-${id}-name`),
+      bpm: optionalNumber(formData, `piece-${id}-bpm`),
+      timeOfFocusMinutes: optionalNumber(formData, `piece-${id}-time`),
+      problem: optionalString(formData, `piece-${id}-problem`),
+    })).filter(hasValues)
+    const reflection = {
+      todaysWin: optionalString(formData, 'todaysWin'),
+      tomorrowsFocus: optionalString(formData, 'tomorrowsFocus'),
+    }
+    const payload = {
+      practiceDate: formData.get('practiceDate'),
+      practiceTime: {
+        hours: Number(formData.get('practiceHours')),
+        minutes: Number(formData.get('practiceMinutes')),
+      },
+      fundamentals,
+      pieces: loggedPieces,
+      reflection: hasValues(reflection) ? reflection : null,
+    }
+
+    setIsSaving(true)
+    setSubmissionMessage('')
+
+    try {
+      const response = await fetch('/api/logs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      if (response.status === 409) {
+        setSubmissionMessage('A log already exists for this practice date.')
+        return
+      }
+
+      if (!response.ok) {
+        throw new Error('Unable to save the practice log.')
+      }
+
+      setSubmissionMessage('Practice log saved.')
+    } catch (error) {
+      setSubmissionMessage(error instanceof Error ? error.message : 'Unable to save the practice log.')
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   return (
@@ -179,7 +248,8 @@ function Logger() {
 
         <ReflectionForm />
 
-        <ActionButtons />
+        <ActionButtons isSaving={isSaving} />
+        {submissionMessage && <p className='logger-submission-message' role='status'>{submissionMessage}</p>}
       </form>
     </div>
   )
