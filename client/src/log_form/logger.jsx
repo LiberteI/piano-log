@@ -1,78 +1,87 @@
 import { useState } from 'react'
-import { ArrowRight, CalendarDays, Clock3, Goal, ListMusic, Music2, Save, Trophy } from 'lucide-react'
+import { ArrowRight, CalendarDays, Clock3, Goal, ListMusic, Music2, Save, Trash2, Trophy } from 'lucide-react'
 import './logger.css'
 
-const PieceCard = (type) => {
+const PieceCard = ({ id, onDelete }) => {
   return (
-    <div>
-      <label htmlFor="">Piece Name / No.</label>
-      <input type="text" />
+    <div className='logger-dynamic-card'>
+      <div className='logger-piece-fields'>
+        <div className='logger-field'>
+          <label htmlFor={`piece-${id}-name`}>Piece Name / No.</label>
+          <input id={`piece-${id}-name`} type="text" />
+        </div>
 
-      <label htmlFor="">BPM</label>
-      <input type="text" />
+        <div className='logger-field'>
+          <label htmlFor={`piece-${id}-bpm`}>BPM</label>
+          <input id={`piece-${id}-bpm`} type="text" />
+        </div>
 
-      <label htmlFor="">Time of Focus</label>
-      <input type="text" />
+        <div className='logger-field'>
+          <label htmlFor={`piece-${id}-time`}>Time of Focus</label>
+          <input id={`piece-${id}-time`} type="text" />
+        </div>
 
-      <label htmlFor="">Problem</label>
-      <input type="text" />
+        <div className='logger-field'>
+          <label htmlFor={`piece-${id}-problem`}>Problem</label>
+          <input id={`piece-${id}-problem`} type="text" />
+        </div>
+      </div>
+
+      <button className='logger-delete-button' type='button' onClick={() => onDelete(id)}>
+        <Trash2 aria-hidden='true' size={16} /> Delete Piece
+      </button>
     </div>
   )
 }
 
-const FundamentalCard = (type) => {
+const FundamentalCard = ({ id, onDelete }) => {
   return (
-    <div>
-      <label htmlFor="">Key</label>
-      <input type="text" />
+    <div className='logger-dynamic-card logger-fundamental-card'>
+      <div className='logger-piece-fields'>
+        <div className='logger-field'>
+          <label htmlFor={`fundamental-${id}-key`}>Key</label>
+          <input id={`fundamental-${id}-key`} type="text" />
+        </div>
 
-      <label htmlFor="">BPM</label>
-      <input type="text" />
+        <div className='logger-field'>
+          <label htmlFor={`fundamental-${id}-bpm`}>BPM</label>
+          <input id={`fundamental-${id}-bpm`} type="text" />
+        </div>
 
-      <label htmlFor="">Time of Focus</label>
-      <input type="text" />
+        <div className='logger-field'>
+          <label htmlFor={`fundamental-${id}-time`}>Time of Focus</label>
+          <input id={`fundamental-${id}-time`} type="text" />
+        </div>
 
-      <label htmlFor="">Problem</label>
-      <input type="text" />
+        <div className='logger-field'>
+          <label htmlFor={`fundamental-${id}-problem`}>Problem</label>
+          <input id={`fundamental-${id}-problem`} type="text" />
+        </div>
+      </div>
+
+      <button className='logger-delete-button' type='button' onClick={() => onDelete(id)}>
+        <Trash2 aria-hidden='true' color='#f2b53d' size={16} /> Delete Item
+      </button>
     </div>
   )
 }
 
-const FundamentalEnum = [
-  "scales",
-  "arpeggios",
-  "chords",
-  "octaves",
-  "repeated notes",
-  "thirds/sixths"
-]
-
-const FundamentalItem = (type) => {
-  return (
-    <div>
-      <input type="checkbox" />
-      <label htmlFor="">Fundamental Type</label>
-    </div>
-  )
-}
-
-const FundamentalForm = (type) => {
+const FundamentalForm = ({ items, onAdd, onDelete }) => {
   return (
     <div>
       <h2><ListMusic aria-hidden='true' color='#f2b53d' size={18} /> Fundamentals</h2>
-      <button className='logger-add-button'>+ Add New Item</button>
-
-
-
+      <button className='logger-add-button' type='button' onClick={onAdd}>+ Add New Item</button>
+      {items.map((id) => <FundamentalCard key={id} id={id} onDelete={onDelete} />)}
     </div>
   )
 } 
 
-const PieceForm = (type) => {
+const PieceForm = ({ pieces, onAdd, onDelete }) => {
   return (
     <div>
       <h2><Music2 aria-hidden='true' color='#f2b53d' size={18} /> Practice Pieces</h2>
-      <button className='logger-add-button'>+ Add New Piece</button>
+      <button className='logger-add-button' type='button' onClick={onAdd}>+ Add New Piece</button>
+      {pieces.map((id) => <PieceCard key={id} id={id} onDelete={onDelete} />)}
     </div>
   )
 }
@@ -89,11 +98,11 @@ const ReflectionForm = (type) => {
   )
 }
 
-const Date = () => {
+const PracticeDate = ({ maxDate }) => {
   return (
     <div className='logger-field'>
       <label htmlFor="practice-date"><CalendarDays aria-hidden='true' color='#f2b53d' size={18} /> Practice Date</label>
-      <input id="practice-date" type="date" />
+      <input id="practice-date" type="date" max={maxDate} required />
     </div>
   )
 }
@@ -106,10 +115,12 @@ const PracticeTime = () => {
     <div className='logger-field'>
       <label htmlFor="practice-hours"><Clock3 aria-hidden='true' color='#f2b53d' size={18} /> Total Practice Time</label>
       <div className='logger-duration-selects'>
-        <select id='practice-hours' name='practiceHours' aria-label='Practice hours' defaultValue='0'>
+        <select id='practice-hours' name='practiceHours' aria-label='Practice hours' defaultValue='' required>
+          <option value='' disabled>Hours</option>
           {hours.map((hour) => <option key={hour} value={hour}>{hour} hr</option>)}
         </select>
-        <select id='practice-minutes' name='practiceMinutes' aria-label='Practice minutes' defaultValue='0'>
+        <select id='practice-minutes' name='practiceMinutes' aria-label='Practice minutes' defaultValue='' required>
+          <option value='' disabled>Minutes</option>
           {minutes.map((minute) => <option key={minute} value={minute}>{minute} min</option>)}
         </select>
       </div>
@@ -119,11 +130,35 @@ const PracticeTime = () => {
 
 const ActionButtons = () => {
   return (
-    <button className='logger-save-button'><Save aria-hidden='true' size={16} /> Save Log <ArrowRight aria-hidden='true' size={16} /></button>
+    <button className='logger-save-button' type='submit'><Save aria-hidden='true' size={16} /> Save Log <ArrowRight aria-hidden='true' size={16} /></button>
   )
 }
 
 function Logger() {
+  const [fundamentalItems, setFundamentalItems] = useState([])
+  const [pieces, setPieces] = useState([])
+  const currentDate = new Date()
+  const today = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`
+
+  function addFundamentalItem() {
+    setFundamentalItems((items) => [...items, crypto.randomUUID()])
+  }
+
+  function addPiece() {
+    setPieces((items) => [...items, crypto.randomUUID()])
+  }
+
+  function deleteFundamentalItem(id) {
+    setFundamentalItems((items) => items.filter((itemId) => itemId !== id))
+  }
+
+  function deletePiece(id) {
+    setPieces((items) => items.filter((pieceId) => pieceId !== id))
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+  }
 
   return (
     <div className='logger-page'>
@@ -132,20 +167,20 @@ function Logger() {
         <h1>Piano Logger</h1>
       </header>
 
-      <div className='logger-card'>
+      <form className='logger-card' onSubmit={handleSubmit}>
         <div className='logger-session-fields'>
-          <Date />
+          <PracticeDate maxDate={today} />
           <PracticeTime />
         </div>
 
-        <FundamentalForm />
+        <FundamentalForm items={fundamentalItems} onAdd={addFundamentalItem} onDelete={deleteFundamentalItem} />
 
-        <PieceForm />
+        <PieceForm pieces={pieces} onAdd={addPiece} onDelete={deletePiece} />
 
         <ReflectionForm />
 
         <ActionButtons />
-      </div>
+      </form>
     </div>
   )
 }

@@ -162,6 +162,41 @@ body,
   transform: scale(1.03);
 }
 
+.logger-dynamic-card {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--input-background);
+}
+
+.logger-dynamic-card label {
+  color: var(--primary-text);
+}
+
+.logger-piece-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.logger-piece-fields .logger-field label {
+  margin-bottom: 0.35rem;
+}
+
+.logger-delete-button {
+  justify-self: end;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 40rem) {
+  .logger-piece-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
 .logger-card .logger-save-button {
   border-color: #f2b53d;
   background: #f2b53d;
