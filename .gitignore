@@ -8,6 +8,7 @@ client/.vite/
 # .NET build output and IDE files
 **/[Bb]in/
 **/[Oo]bj/
+**/publish/
 .vs/
 *.user
 *.suo
