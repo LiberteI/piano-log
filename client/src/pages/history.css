@@ -1,6 +1,6 @@
 .history-page {
   min-height: 100svh;
-  padding: clamp(2rem, 5vw, 5rem);
+  padding: clamp(1rem, 5vw, 5rem);
   background: #0a0b0b;
   color: #f2f2f2;
 }
@@ -151,6 +151,10 @@
   align-items: center;
   gap: 0.4rem;
   margin: 0 !important;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #303232;
+  border-radius: 0.4rem;
+  background: #1b1c1c;
   color: #f2b53d;
   font-size: 0.85rem;
 }
@@ -165,6 +169,7 @@
 .history-card-actions {
   grid-area: actions;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.6rem;
   margin: 0;
 }
@@ -214,5 +219,9 @@
       "reflection"
       "actions";
     row-gap: 1rem;
+  }
+
+  .history-card-actions {
+    width: 100%;
   }
 }

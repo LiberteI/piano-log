@@ -114,7 +114,10 @@ function History() {
         <div className='history-list'>
           {logs.map((log) => {
             const date = new globalThis.Date(`${log.practiceDate}T12:00:00`)
-            const practiceItem = log.pieces[0]?.name ?? log.fundamentals[0]?.key ?? 'Practice session'
+            const practiceItem = [
+              ...log.fundamentals.map((item) => item.key),
+              ...log.pieces.map((item) => item.name),
+            ].filter((item): item is string => Boolean(item)).join(' · ') || 'Practice session'
             const reflection = log.reflection?.todaysWin ?? log.reflection?.tomorrowsFocus ?? 'No reflection recorded.'
 
             return (

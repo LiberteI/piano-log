@@ -4,6 +4,8 @@ body,
   width: 100%;
   min-height: 100%;
   margin: 0;
+  overflow-x: clip;
+  background: #0a0b0b;
 }
 
 .logger-page {
@@ -81,6 +83,10 @@ body,
 }
 
 @media (max-width: 40rem) {
+  .logger-page {
+    padding: 1rem;
+  }
+
   .logger-session-fields {
     grid-template-columns: 1fr;
   }
