@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 env:
-  AZURE_WEBAPP_NAME: piano-logger-hfhfe8dxbhf5cgh2
+  AZURE_WEBAPP_NAME: piano-logger
   DOTNET_VERSION: 9.0.x
   PROJECT_PATH: server/PianoLog.Api/PianoLog.Api.csproj
   PUBLISH_PATH: ${{ github.workspace }}/publish
