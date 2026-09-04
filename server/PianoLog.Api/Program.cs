@@ -43,6 +43,23 @@ await practiceLogs.Indexes.CreateOneAsync(new CreateIndexModel<PracticeLogDocume
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }))
     .WithName("GetHealth");
 
+app.MapGet("/api/logs", async (CancellationToken cancellationToken) =>
+{
+    var logs = await practiceLogs
+        .Find(Builders<PracticeLogDocument>.Filter.Empty)
+        .Sort(Builders<PracticeLogDocument>.Sort.Descending(log => log.PracticeDate))
+        .ToListAsync(cancellationToken);
+
+    return Results.Ok(logs.Select(log => new
+    {
+        log.PracticeDate,
+        log.PracticeTime,
+        log.Fundamentals,
+        log.Pieces,
+        log.Reflection,
+    }));
+});
+
 app.MapPost("/api/logs", async (CreatePracticeLogRequest request, CancellationToken cancellationToken) =>
 {
     if (!DateOnly.TryParseExact(

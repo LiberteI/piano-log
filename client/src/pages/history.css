@@ -6,30 +6,23 @@
 }
 
 .history-header {
-  max-width: 46rem;
-  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 2rem;
 }
 
-.history-header p {
-  margin: 0 0 0.6rem;
+.history-header > span {
   color: #f2b53d;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 2rem;
+  line-height: 1;
 }
 
 .history-header h1 {
   margin: 0;
   color: #f2f2f2;
-  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  font-size: clamp(2.5rem, 6vw, 3rem);
   line-height: 1;
-}
-
-.history-header span {
-  display: block;
-  margin-top: 0.9rem;
-  color: #929292;
 }
 
 .history-empty {
@@ -69,4 +62,157 @@
   gap: 0.45rem;
   margin-top: 0.75rem;
   font-size: 0.85rem;
+}
+
+.history-list {
+  display: grid;
+  gap: 1rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.history-card {
+  display: grid;
+  grid-template-columns: 9rem 1px minmax(0, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid #303232;
+  border-radius: 0.8rem;
+  background: #131414;
+}
+
+.history-card-date time {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 0.35rem;
+  color: #f2f2f2;
+}
+
+.history-card-date strong {
+  grid-column: 1 / -1;
+  color: #f2b53d;
+  font-size: 2rem;
+  line-height: 0.9;
+}
+
+.history-card-date span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.history-card-date small {
+  align-self: center;
+}
+
+.history-card-date small,
+.history-card-date p {
+  color: #929292;
+  font-size: 0.8rem;
+}
+
+.history-card-date p {
+  margin: 0.25rem 0 0;
+}
+
+.history-card-line {
+  background: #303232;
+}
+
+.history-card-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title time"
+    "reflection actions";
+  align-items: end;
+  column-gap: 1rem;
+  min-width: 0;
+}
+
+.history-card-content h2,
+.history-card-content p {
+  margin: 0;
+}
+
+.history-card-content h2 {
+  grid-area: title;
+  color: #f2f2f2;
+  font-size: 1.2rem;
+}
+
+.history-card-time {
+  grid-area: time;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 !important;
+  color: #f2b53d;
+  font-size: 0.85rem;
+}
+
+.history-card-reflection {
+  grid-area: reflection;
+  margin-top: 0.75rem !important;
+  color: #929292;
+  line-height: 1.5;
+}
+
+.history-card-actions {
+  grid-area: actions;
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.history-card-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #303232;
+  border-radius: 0.4rem;
+  background: #1b1c1c;
+  color: #f2f2f2;
+  cursor: pointer;
+}
+
+.history-card-actions button:hover {
+  border-color: #f2b53d;
+  color: #f2b53d;
+}
+
+@media (max-width: 36rem) {
+  .history-card {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .history-card-date {
+    display: flex;
+    align-items: end;
+    gap: 0.75rem;
+  }
+
+  .history-card-date p {
+    margin: 0;
+  }
+
+  .history-card-line {
+    display: none;
+  }
+
+  .history-card-content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "time"
+      "reflection"
+      "actions";
+    row-gap: 1rem;
+  }
 }
