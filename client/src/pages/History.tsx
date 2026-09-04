@@ -26,7 +26,7 @@ type HistoryCardProps = {
     iso: string
     month: string
     year: number
-    dayOfWeek: string
+    dayOfMonth: string
   }
   practiceItem: string
   practiceTime: string
@@ -42,7 +42,7 @@ export function HistoryCard({ number, date, practiceItem, practiceTime, reflecti
           <span>{date.month}</span>
           <small>{date.year}</small>
         </time>
-        <p>{date.dayOfWeek}</p>
+        <p>{date.dayOfMonth}</p>
       </header>
 
       <div className='history-card-line' aria-hidden='true' />
@@ -112,7 +112,7 @@ function History() {
         </div>
       ) : (
         <div className='history-list'>
-          {logs.map((log) => {
+          {logs.map((log, index) => {
             const date = new globalThis.Date(`${log.practiceDate}T12:00:00`)
             const practiceItem = [
               ...log.fundamentals.map((item) => item.key),
@@ -123,12 +123,12 @@ function History() {
             return (
               <HistoryCard
                 key={log.practiceDate}
-                number={String(date.getDate()).padStart(2, '0')}
+                number={String(logs.length - index)}
                 date={{
                   iso: log.practiceDate,
                   month: date.toLocaleString('en-US', { month: 'short' }),
                   year: date.getFullYear(),
-                  dayOfWeek: date.toLocaleString('en-US', { weekday: 'long' }),
+                  dayOfMonth: formatOrdinal(date.getDate()),
                 }}
                 practiceItem={practiceItem}
                 practiceTime={`${log.practiceTime.hours} hr ${log.practiceTime.minutes} min`}
@@ -140,6 +140,22 @@ function History() {
       )}
     </section>
   )
+}
+
+function formatOrdinal(day: number) {
+  const remainder = day % 100
+  if (remainder === 11 || remainder === 12 || remainder === 13) return `${day}th`
+
+  switch (day % 10) {
+    case 1:
+      return `${day}st`
+    case 2:
+      return `${day}nd`
+    case 3:
+      return `${day}rd`
+    default:
+      return `${day}th`
+  }
 }
 
 export default History

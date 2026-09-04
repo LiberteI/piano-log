@@ -13,6 +13,7 @@ public sealed class PracticeLogDocument
     public required List<FundamentalLogItem> Fundamentals { get; init; }
     public required List<PieceLogItem> Pieces { get; init; }
     public ReflectionLogItem? Reflection { get; init; }
+    public string? ArchiveMarkdown { get; init; }
     public DateTime CreatedAtUtc { get; init; }
 
     public static PracticeLogDocument FromRequest(CreatePracticeLogRequest request) => new()
@@ -39,12 +40,17 @@ public sealed record FundamentalLogItem(
     string? Key,
     int? Bpm,
     int? TimeOfFocusMinutes,
-    string? Problem);
+    string? Problem,
+    List<string>? Types = null);
 
 public sealed record PieceLogItem(
     string? Name,
     int? Bpm,
     int? TimeOfFocusMinutes,
-    string? Problem);
+    string? Problem,
+    string? Category = null,
+    string? TechniqueFocus = null,
+    string? SectionPracticed = null,
+    string? Note = null);
 
 public sealed record ReflectionLogItem(string? TodaysWin, string? TomorrowsFocus);

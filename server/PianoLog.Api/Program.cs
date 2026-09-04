@@ -1,5 +1,6 @@
 using MongoDB.Driver;
 using PianoLog.Api.Models;
+using PianoLog.Api.Scripts;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,6 +41,17 @@ await practiceLogs.Indexes.CreateOneAsync(new CreateIndexModel<PracticeLogDocume
     Builders<PracticeLogDocument>.IndexKeys.Ascending(log => log.PracticeDate),
     new CreateIndexOptions { Name = "practice-date", Unique = true }));
 
+if (args.Contains("--import-archive", StringComparer.Ordinal))
+{
+    var archiveDirectory = Path.GetFullPath(Path.Combine(
+        app.Environment.ContentRootPath,
+        "../../archive/markdown-workflow/logs"));
+    var result = await ArchivedPracticeLogImporter.ImportAsync(practiceLogs, archiveDirectory);
+
+    Console.WriteLine($"Archive import complete: {result.Imported} imported, {result.Skipped} skipped.");
+    return;
+}
+
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }))
     .WithName("GetHealth");
 
@@ -57,6 +69,7 @@ app.MapGet("/api/logs", async (CancellationToken cancellationToken) =>
         log.Fundamentals,
         log.Pieces,
         log.Reflection,
+        log.ArchiveMarkdown,
     }));
 });
 
