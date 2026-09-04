@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CalendarDays, CalendarSearch, ChevronLeft, ChevronRight, Clock3, Eye, Pencil } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { apiUrl } from '../api.ts'
 import './history.css'
 
 type PracticeLog = {
@@ -32,12 +33,13 @@ type HistoryCardProps = {
   practiceItem: string
   practiceTime: string
   reflections: string
+  onView: () => void
   onEdit: () => void
 }
 
 type HistoryFilter = 'all' | 'this-month' | 'last-three-months' | 'this-year' | 'month-specific'
 
-export function HistoryCard({ number, date, practiceItem, practiceTime, reflections, onEdit }: HistoryCardProps) {
+export function HistoryCard({ number, date, practiceItem, practiceTime, reflections, onView, onEdit }: HistoryCardProps) {
   return (
     <article className='history-card'>
       <header className='history-card-date'>
@@ -57,7 +59,7 @@ export function HistoryCard({ number, date, practiceItem, practiceTime, reflecti
         <p className='history-card-reflection'>{reflections}</p>
 
         <footer className='history-card-actions'>
-          <button type='button'><Eye aria-hidden='true' size={16} /> View</button>
+          <button type='button' onClick={onView}><Eye aria-hidden='true' size={16} /> View</button>
           <button type='button' onClick={onEdit}><Pencil aria-hidden='true' size={16} /> Edit</button>
         </footer>
       </div>
@@ -77,7 +79,7 @@ function History() {
 
     async function loadLogs() {
       try {
-        const response = await fetch('/api/logs')
+        const response = await fetch(apiUrl('/api/logs'))
 
         if (!response.ok) {
           throw new Error('Unable to load practice history.')
@@ -194,6 +196,7 @@ function History() {
                 practiceItem={practiceItem}
                 practiceTime={`${log.practiceTime.hours} hr ${log.practiceTime.minutes} min`}
                 reflections={reflection}
+                onView={() => navigate(`/history/${encodeURIComponent(log.practiceDate)}`)}
                 onEdit={() => navigate(`/?edit=${encodeURIComponent(log.practiceDate)}`)}
               />
             )

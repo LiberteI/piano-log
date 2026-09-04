@@ -1,0 +1,278 @@
+.practice-report,
+.practice-report-state {
+  box-sizing: border-box;
+  min-height: 100svh;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 5vw, 4rem);
+  color: #f2f2f2;
+}
+
+.practice-report {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.practice-report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(2.5rem, 8vw, 5rem);
+}
+
+.practice-report-back,
+.practice-report-state a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #929292;
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.practice-report-back:hover,
+.practice-report-state a:hover {
+  color: #f2b53d;
+}
+
+.practice-report-menu {
+  position: relative;
+}
+
+.practice-report-menu > button,
+.practice-report-menu-options button {
+  border: 0;
+  background: transparent;
+  color: #929292;
+  cursor: pointer;
+}
+
+.practice-report-menu > button {
+  display: grid;
+  place-items: center;
+  padding: 0.4rem;
+}
+
+.practice-report-menu-options {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  display: grid;
+  min-width: 9rem;
+  padding: 0.35rem;
+  border: 1px solid #303232;
+  border-radius: 0.5rem;
+  background: #1b1c1c;
+  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 35%);
+}
+
+.practice-report-menu-options button {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem;
+  color: #f2f2f2;
+  font-family: system-ui, sans-serif;
+  font-size: 0.82rem;
+  text-align: left;
+}
+
+.practice-report-menu-options button:hover:last-child {
+  color: #ee6b5f;
+}
+
+.practice-report-menu-options button:hover:first-child {
+  color: #f2b53d;
+}
+
+.practice-report-heading {
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid #303232;
+}
+
+.practice-report-heading > p,
+.practice-report-section > h2,
+.practice-report-reflections h2,
+.practice-report-detail > span,
+.practice-report-metrics span {
+  margin: 0;
+  color: #f2b53d;
+  font-family: system-ui, sans-serif;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.practice-report-heading > div,
+.practice-report-piece-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.practice-report-heading h1 {
+  margin: 0.45rem 0 0;
+  color: #f2f2f2;
+  font-family: inherit;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.practice-report-heading span,
+.practice-report-piece-title > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #f2b53d;
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.practice-report-section,
+.practice-report-reflections {
+  padding: 2rem 0;
+  border-bottom: 1px solid #303232;
+}
+
+.practice-report-section > h2,
+.practice-report-reflections h2 {
+  margin: 0 0 1rem;
+}
+
+.practice-report-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.practice-report-tags span {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgb(242 181 61 / 35%);
+  border-radius: 999px;
+  color: #f2b53d;
+  font-family: system-ui, sans-serif;
+  font-size: 0.78rem;
+}
+
+.practice-report-entry + .practice-report-entry {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(48 50 50 / 65%);
+}
+
+.practice-report-piece-title h3 {
+  margin: 0 0 1rem;
+  color: #f2f2f2;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.practice-report-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+}
+
+.practice-report-metrics > div {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 5rem;
+}
+
+.practice-report-metrics strong {
+  color: #f2f2f2;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.practice-report-detail {
+  margin-top: 1rem;
+}
+
+.practice-report-detail p,
+.practice-report-reflections p,
+.practice-report-muted {
+  margin: 0.4rem 0 0;
+  color: #c4c4c4;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.practice-report-reflections {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.practice-report-reflections h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.practice-report-reflections h2 svg {
+  color: #f2b53d;
+}
+
+.practice-report-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.75rem;
+}
+
+.practice-report-footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid #f2b53d;
+  border-radius: 0.4rem;
+  background: #f2b53d;
+  color: #090a0a;
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+  font-weight: 700;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.practice-report-footer button:hover {
+  box-shadow: 0 0.45rem 1rem rgb(242 181 61 / 22%);
+  transform: translateY(-2px);
+}
+
+.practice-report-state {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 1rem;
+  color: #929292;
+  font-family: system-ui, sans-serif;
+}
+
+.practice-report-state svg {
+  color: #f2b53d;
+}
+
+@media (max-width: 36rem) {
+  .practice-report-heading > div,
+  .practice-report-piece-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .practice-report-piece-title h3 {
+    margin-bottom: 0;
+  }
+
+  .practice-report-metrics {
+    gap: 1rem 1.5rem;
+  }
+}

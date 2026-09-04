@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { apiUrl } from '../api.ts'
 import { ArrowRight, CalendarDays, ChevronDown, Clock3, Goal, ListMusic, Music2, Save, Trash2, Trophy } from 'lucide-react'
 import './logger.css'
 
@@ -207,7 +208,7 @@ function Logger() {
 
     async function loadLog() {
       try {
-        const response = await fetch(`/api/logs/${encodeURIComponent(editingDate)}`)
+        const response = await fetch(apiUrl(`/api/logs/${encodeURIComponent(editingDate)}`))
         if (!response.ok) throw new Error('Unable to load this practice log.')
 
         const log = await response.json()
@@ -288,7 +289,7 @@ function Logger() {
     setSubmissionMessage('')
 
     try {
-      const response = await fetch(editingDate ? `/api/logs/${encodeURIComponent(editingDate)}` : '/api/logs', {
+      const response = await fetch(apiUrl(editingDate ? `/api/logs/${encodeURIComponent(editingDate)}` : '/api/logs'), {
         method: editingDate ? 'PUT' : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

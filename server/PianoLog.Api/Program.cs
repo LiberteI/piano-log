@@ -2,14 +2,17 @@ using MongoDB.Driver;
 using PianoLog.Api.Models;
 using PianoLog.Api.Scripts;
 using System.Globalization;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+var clientOrigins = (builder.Configuration["ClientOrigin"] ?? "http://localhost:5173")
+    .Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("client", policy =>
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(clientOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
@@ -71,6 +74,25 @@ app.MapGet("/api/logs", async (CancellationToken cancellationToken) =>
         log.Reflection,
         log.ArchiveMarkdown,
     }));
+});
+
+app.MapGet("/api/exports/practice-days", async (CancellationToken cancellationToken) =>
+{
+    var practiceDays = await practiceLogs
+        .Find(Builders<PracticeLogDocument>.Filter.Empty)
+        .Sort(Builders<PracticeLogDocument>.Sort.Ascending(log => log.PracticeDate))
+        .Project(log => new
+        {
+            date = log.PracticeDate,
+            practiceTime = log.PracticeTime.Hours * 60 + log.PracticeTime.Minutes,
+        })
+        .ToListAsync(cancellationToken);
+
+    var json = JsonSerializer.Serialize(practiceDays, new JsonSerializerOptions { WriteIndented = true });
+    return Results.File(
+        System.Text.Encoding.UTF8.GetBytes(json),
+        contentType: "application/json",
+        fileDownloadName: "practice-days.json");
 });
 
 app.MapGet("/api/logs/{practiceDate}", async (string practiceDate, CancellationToken cancellationToken) =>
@@ -173,6 +195,12 @@ app.MapPut("/api/logs/{originalPracticeDate}", async (
     }
 
     return Results.Ok(new { updatedLog.PracticeDate });
+});
+
+app.MapDelete("/api/logs/{practiceDate}", async (string practiceDate, CancellationToken cancellationToken) =>
+{
+    var result = await practiceLogs.DeleteOneAsync(log => log.PracticeDate == practiceDate, cancellationToken);
+    return result.DeletedCount == 0 ? Results.NotFound() : Results.NoContent();
 });
 
 app.Run();
