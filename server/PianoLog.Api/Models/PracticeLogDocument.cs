@@ -16,14 +16,18 @@ public sealed class PracticeLogDocument
     public string? ArchiveMarkdown { get; init; }
     public DateTime CreatedAtUtc { get; init; }
 
-    public static PracticeLogDocument FromRequest(CreatePracticeLogRequest request) => new()
+    public static PracticeLogDocument FromRequest(
+        CreatePracticeLogRequest request,
+        DateTime? createdAtUtc = null,
+        string? archiveMarkdown = null) => new()
     {
         PracticeDate = request.PracticeDate,
         PracticeTime = request.PracticeTime,
         Fundamentals = request.Fundamentals ?? [],
         Pieces = request.Pieces ?? [],
         Reflection = request.Reflection,
-        CreatedAtUtc = DateTime.UtcNow,
+        ArchiveMarkdown = archiveMarkdown,
+        CreatedAtUtc = createdAtUtc ?? DateTime.UtcNow,
     };
 }
 

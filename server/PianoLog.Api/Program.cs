@@ -73,6 +73,19 @@ app.MapGet("/api/logs", async (CancellationToken cancellationToken) =>
     }));
 });
 
+app.MapGet("/api/logs/{practiceDate}", async (string practiceDate, CancellationToken cancellationToken) =>
+{
+    var log = await practiceLogs.Find(log => log.PracticeDate == practiceDate).FirstOrDefaultAsync(cancellationToken);
+    return log is null ? Results.NotFound() : Results.Ok(new
+    {
+        log.PracticeDate,
+        log.PracticeTime,
+        log.Fundamentals,
+        log.Pieces,
+        log.Reflection,
+    });
+});
+
 app.MapPost("/api/logs", async (CreatePracticeLogRequest request, CancellationToken cancellationToken) =>
 {
     if (!DateOnly.TryParseExact(
@@ -111,6 +124,55 @@ app.MapPost("/api/logs", async (CreatePracticeLogRequest request, CancellationTo
     }
 
     return Results.Created($"/api/logs/{log.Id}", new { id = log.Id.ToString(), log.PracticeDate });
+});
+
+app.MapPut("/api/logs/{originalPracticeDate}", async (
+    string originalPracticeDate,
+    CreatePracticeLogRequest request,
+    CancellationToken cancellationToken) =>
+{
+    if (!DateOnly.TryParseExact(
+            request.PracticeDate,
+            "yyyy-MM-dd",
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.None,
+            out var practiceDate) || practiceDate > DateOnly.FromDateTime(DateTime.Today))
+    {
+        return Results.ValidationProblem(new Dictionary<string, string[]>
+        {
+            ["practiceDate"] = ["Practice date must be today or earlier."],
+        });
+    }
+
+    if (request.PracticeTime is null ||
+        request.PracticeTime.Hours is < 0 or > 12 ||
+        request.PracticeTime.Minutes is < 0 or > 59 ||
+        request.PracticeTime.Hours == 0 && request.PracticeTime.Minutes == 0)
+    {
+        return Results.ValidationProblem(new Dictionary<string, string[]>
+        {
+            ["practiceTime"] = ["Practice time must be greater than zero."],
+        });
+    }
+
+    var existingLog = await practiceLogs
+        .Find(log => log.PracticeDate == originalPracticeDate)
+        .FirstOrDefaultAsync(cancellationToken);
+    if (existingLog is null) return Results.NotFound();
+
+    var updatedLog = PracticeLogDocument.FromRequest(request, existingLog.CreatedAtUtc, existingLog.ArchiveMarkdown);
+    updatedLog.Id = existingLog.Id;
+
+    try
+    {
+        await practiceLogs.ReplaceOneAsync(log => log.Id == existingLog.Id, updatedLog, cancellationToken: cancellationToken);
+    }
+    catch (MongoWriteException exception) when (exception.WriteError?.Category == ServerErrorCategory.DuplicateKey)
+    {
+        return Results.Conflict(new { message = "A log already exists for this practice date." });
+    }
+
+    return Results.Ok(new { updatedLog.PracticeDate });
 });
 
 app.Run();

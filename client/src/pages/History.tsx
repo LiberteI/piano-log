@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { CalendarDays, CalendarSearch, ChevronLeft, ChevronRight, Clock3, Eye, Pencil } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import './history.css'
 
 type PracticeLog = {
@@ -31,11 +32,12 @@ type HistoryCardProps = {
   practiceItem: string
   practiceTime: string
   reflections: string
+  onEdit: () => void
 }
 
 type HistoryFilter = 'all' | 'this-month' | 'last-three-months' | 'this-year' | 'month-specific'
 
-export function HistoryCard({ number, date, practiceItem, practiceTime, reflections }: HistoryCardProps) {
+export function HistoryCard({ number, date, practiceItem, practiceTime, reflections, onEdit }: HistoryCardProps) {
   return (
     <article className='history-card'>
       <header className='history-card-date'>
@@ -56,7 +58,7 @@ export function HistoryCard({ number, date, practiceItem, practiceTime, reflecti
 
         <footer className='history-card-actions'>
           <button type='button'><Eye aria-hidden='true' size={16} /> View</button>
-          <button type='button'><Pencil aria-hidden='true' size={16} /> Edit</button>
+          <button type='button' onClick={onEdit}><Pencil aria-hidden='true' size={16} /> Edit</button>
         </footer>
       </div>
     </article>
@@ -64,6 +66,7 @@ export function HistoryCard({ number, date, practiceItem, practiceTime, reflecti
 }
 
 function History() {
+  const navigate = useNavigate()
   const [logs, setLogs] = useState<PracticeLog[] | null>(null)
   const [filter, setFilter] = useState<HistoryFilter>('all')
   const [selectedMonth, setSelectedMonth] = useState(() => startOfMonth(new globalThis.Date()))
@@ -191,6 +194,7 @@ function History() {
                 practiceItem={practiceItem}
                 practiceTime={`${log.practiceTime.hours} hr ${log.practiceTime.minutes} min`}
                 reflections={reflection}
+                onEdit={() => navigate(`/?edit=${encodeURIComponent(log.practiceDate)}`)}
               />
             )
           })}

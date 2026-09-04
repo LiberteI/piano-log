@@ -21,7 +21,6 @@ function Sidebar() {
         </NavLink>
       </nav>
 
-      <p className='sidebar-note'>One focused session at a time.</p>
     </aside>
   )
 }

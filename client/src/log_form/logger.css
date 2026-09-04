@@ -182,6 +182,63 @@ body,
   color: var(--primary-text);
 }
 
+.logger-add-menu {
+  position: relative;
+  width: fit-content;
+}
+
+.logger-add-menu-options {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  min-width: 13rem;
+  max-height: 15rem;
+  margin-top: 0.35rem;
+  overflow-y: auto;
+  padding: 0.35rem;
+  border: 1px solid #303232;
+  border-radius: 0.5rem;
+  background: #1b1c1c;
+  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 35%);
+  scrollbar-color: #303232 #090a0a;
+  scrollbar-width: thin;
+}
+
+.logger-add-menu-options::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.logger-add-menu-options::-webkit-scrollbar-track {
+  background: #090a0a;
+}
+
+.logger-add-menu-options::-webkit-scrollbar-thumb {
+  border: 2px solid #090a0a;
+  border-radius: 999px;
+  background: #303232;
+}
+
+.logger-add-menu-options::-webkit-scrollbar-thumb:hover {
+  background: #f2b53d;
+}
+
+.logger-card .logger-add-menu-options button {
+  width: 100%;
+  color: var(--primary-text);
+  text-align: left;
+}
+
+.logger-card .logger-add-menu-options button:hover {
+  color: #f2b53d;
+}
+
+.logger-fundamental-title {
+  margin: 0;
+  color: #f2b53d;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 .logger-piece-fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
