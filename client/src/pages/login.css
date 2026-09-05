@@ -71,14 +71,27 @@
   justify-content: center;
   width: 100%;
   margin-top: 2rem;
+  padding: 2px;
+  border: 1px solid #303232;
+  border-radius: 0.5rem;
+  background: #1b1c1c;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
-.login-google-button > div {
-  width: 100% !important;
+.login-google-button:hover {
+  border-color: #f2b53d;
+  box-shadow: 0 0.6rem 1.25rem rgb(0 0 0 / 24%);
+  transform: translateY(-2px);
+}
+
+.login-google-button:focus-within {
+  border-color: #f2b53d;
+  box-shadow: 0 0 0 3px rgb(242 181 61 / 18%);
 }
 
 .login-google-button iframe {
-  width: 100% !important;
+  display: block;
+  border-radius: 0.3rem;
 }
 
 .login-message {

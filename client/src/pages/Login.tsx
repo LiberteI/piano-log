@@ -49,12 +49,13 @@ const Login = () => {
         callback: signInWithGoogle,
         auto_select: false,
       })
+      const buttonWidth = Math.min(360, Math.max(200, Math.floor(googleButtonRef.current.clientWidth - 4)))
       window.google.accounts.id.renderButton(googleButtonRef.current, {
         theme: 'filled_black',
         size: 'large',
         text: 'continue_with',
         shape: 'rectangular',
-        width: 320,
+        width: buttonWidth,
       })
     }
 
