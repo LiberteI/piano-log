@@ -70,48 +70,21 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 3rem;
-  gap: 0.7rem;
   margin-top: 2rem;
-  padding: 0.65rem 1rem;
-  border: 1px solid #303232;
-  border-radius: 0.45rem;
-  color: #f2f2f2;
-  font: inherit;
-  font-weight: 600;
-  background: #1b1c1c;
-  cursor: pointer;
-  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
-.login-google-button:hover {
-  border-color: #f2b53d;
-  background: #202121;
-  box-shadow: 0 0.6rem 1.25rem rgb(0 0 0 / 24%);
-  transform: translateY(-2px);
+.login-google-button > div {
+  width: 100% !important;
 }
 
-.login-google-button:active {
-  box-shadow: none;
-  transform: translateY(0);
+.login-google-button iframe {
+  width: 100% !important;
 }
 
-.login-google-button:focus-visible {
-  outline: 3px solid rgb(242 181 61 / 22%);
-  outline-offset: 3px;
-}
-
-.login-google-mark {
-  display: grid;
-  width: 1.4rem;
-  height: 1.4rem;
-  place-items: center;
-  border-radius: 50%;
-  color: #0a0b0b;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  background: #f2b53d;
+.login-message {
+  margin-top: 1rem !important;
+  color: #f2b53d !important;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 30rem) {

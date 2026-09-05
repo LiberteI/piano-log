@@ -1,10 +1,18 @@
+using Google.Apis.Auth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using PianoLog.Api.Models;
 using PianoLog.Api.Scripts;
 using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
+const string jwtIssuer = "PianoLog.Api";
+const string jwtAudience = "PianoLog.Client";
 
 builder.Services.AddOpenApi();
 var clientOrigins = (builder.Configuration["ClientOrigin"] ?? "http://localhost:5173")
@@ -16,6 +24,39 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
+
+var googleClientId = builder.Configuration["Google:ClientId"]
+    ?? builder.Configuration["GOOGLE_CLIENT_ID"]
+    ?? throw new InvalidOperationException("Google:ClientId is required.");
+var allowedEmail = builder.Configuration["Google:AllowedEmail"]
+    ?? builder.Configuration["GOOGLE_ALLOWED_EMAIL"]
+    ?? throw new InvalidOperationException("Google:AllowedEmail is required.");
+var jwtSigningKey = builder.Configuration["Jwt:SigningKey"]
+    ?? builder.Configuration["JWT_SIGNING_KEY"]
+    ?? throw new InvalidOperationException("Jwt:SigningKey is required.");
+if (jwtSigningKey.Length < 32)
+{
+    throw new InvalidOperationException("Jwt:SigningKey must be at least 32 characters.");
+}
+
+var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSigningKey));
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = signingKey,
+            ValidateIssuer = true,
+            ValidIssuer = jwtIssuer,
+            ValidateAudience = true,
+            ValidAudience = jwtAudience,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.FromMinutes(1),
+        };
+    });
+builder.Services.AddAuthorization();
 
 var connectionString = builder.Configuration.GetConnectionString("MongoDb")
     ?? throw new InvalidOperationException("ConnectionStrings:MongoDb is required.");
@@ -36,6 +77,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("client");
+app.UseAuthentication();
+app.UseAuthorization();
 
 var practiceLogs = app.Services.GetRequiredService<IMongoDatabase>()
     .GetCollection<PracticeLogDocument>("practiceLogs");
@@ -58,6 +101,48 @@ if (args.Contains("--import-archive", StringComparer.Ordinal))
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }))
     .WithName("GetHealth");
 
+app.MapPost("/api/auth/google", async (GoogleCredentialRequest request) =>
+{
+    if (string.IsNullOrWhiteSpace(request.Credential)) return Results.Unauthorized();
+
+    GoogleJsonWebSignature.Payload googleIdentity;
+    try
+    {
+        googleIdentity = await GoogleJsonWebSignature.ValidateAsync(
+            request.Credential,
+            new GoogleJsonWebSignature.ValidationSettings { Audience = [googleClientId] });
+    }
+    catch (InvalidJwtException)
+    {
+        return Results.Unauthorized();
+    }
+
+    if (!googleIdentity.EmailVerified ||
+        !string.Equals(googleIdentity.Email, allowedEmail, StringComparison.OrdinalIgnoreCase))
+    {
+        return Results.Forbid();
+    }
+
+    var expiresAtUtc = DateTime.UtcNow.AddHours(8);
+    var token = new JwtSecurityToken(
+        issuer: jwtIssuer,
+        audience: jwtAudience,
+        claims:
+        [
+            new Claim(JwtRegisteredClaimNames.Sub, googleIdentity.Subject),
+            new Claim(JwtRegisteredClaimNames.Email, googleIdentity.Email),
+        ],
+        notBefore: DateTime.UtcNow,
+        expires: expiresAtUtc,
+        signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256));
+
+    return Results.Ok(new
+    {
+        accessToken = new JwtSecurityTokenHandler().WriteToken(token),
+        expiresAtUtc,
+    });
+});
+
 app.MapGet("/api/logs", async (CancellationToken cancellationToken) =>
 {
     var logs = await practiceLogs
@@ -74,7 +159,7 @@ app.MapGet("/api/logs", async (CancellationToken cancellationToken) =>
         log.Reflection,
         log.ArchiveMarkdown,
     }));
-});
+}).RequireAuthorization();
 
 app.MapGet("/api/exports/practice-days", async (CancellationToken cancellationToken) =>
 {
@@ -93,7 +178,7 @@ app.MapGet("/api/exports/practice-days", async (CancellationToken cancellationTo
         System.Text.Encoding.UTF8.GetBytes(json),
         contentType: "application/json",
         fileDownloadName: "practice-days.json");
-});
+}).RequireAuthorization();
 
 app.MapGet("/api/logs/{practiceDate}", async (string practiceDate, CancellationToken cancellationToken) =>
 {
@@ -106,7 +191,7 @@ app.MapGet("/api/logs/{practiceDate}", async (string practiceDate, CancellationT
         log.Pieces,
         log.Reflection,
     });
-});
+}).RequireAuthorization();
 
 app.MapPost("/api/logs", async (CreatePracticeLogRequest request, CancellationToken cancellationToken) =>
 {
@@ -146,7 +231,7 @@ app.MapPost("/api/logs", async (CreatePracticeLogRequest request, CancellationTo
     }
 
     return Results.Created($"/api/logs/{log.Id}", new { id = log.Id.ToString(), log.PracticeDate });
-});
+}).RequireAuthorization();
 
 app.MapPut("/api/logs/{originalPracticeDate}", async (
     string originalPracticeDate,
@@ -195,12 +280,14 @@ app.MapPut("/api/logs/{originalPracticeDate}", async (
     }
 
     return Results.Ok(new { updatedLog.PracticeDate });
-});
+}).RequireAuthorization();
 
 app.MapDelete("/api/logs/{practiceDate}", async (string practiceDate, CancellationToken cancellationToken) =>
 {
     var result = await practiceLogs.DeleteOneAsync(log => log.PracticeDate == practiceDate, cancellationToken);
     return result.DeletedCount == 0 ? Results.NotFound() : Results.NoContent();
-});
+}).RequireAuthorization();
 
 app.Run();
+
+sealed record GoogleCredentialRequest(string Credential);
