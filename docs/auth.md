@@ -93,5 +93,5 @@ The API also accepts `GOOGLE_CLIENT_ID`, `GOOGLE_ALLOWED_EMAIL`, and `JWT_SIGNIN
 - `VITE_API_URL` and `VITE_GOOGLE_CLIENT_ID` are public browser configuration.
 - `ConnectionStrings__MongoDb` and `Jwt__SigningKey` are secrets.
 - Never expose MongoDB credentials, JWT signing keys, or the Google Client Secret to the browser.
-- All log and export endpoints require `Authorization: Bearer <access-token>`.
-- `/api/health` and `POST /api/auth/google` are intentionally public.
+- All log endpoints require `Authorization: Bearer <access-token>`.
+- `/api/health`, `POST /api/auth/google`, and `GET /api/exports/practice-days` are intentionally public.

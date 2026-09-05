@@ -19,7 +19,7 @@
 
 ## API Endpoints
 
-All endpoints except health and Google sign-in require this request header:
+All log endpoints require this request header:
 
 ```http
 Authorization: Bearer <piano-log-access-token>
@@ -34,7 +34,7 @@ Authorization: Bearer <piano-log-access-token>
 | `POST` | `/api/logs` | Creates a log | Yes |
 | `PUT` | `/api/logs/{originalPracticeDate}` | Updates a log | Yes |
 | `DELETE` | `/api/logs/{practiceDate}` | Deletes a log | Yes |
-| `GET` | `/api/exports/practice-days` | Downloads `practice-days.json` | Yes |
+| `GET` | `/api/exports/practice-days` | Downloads public daily practice durations as `practice-days.json` | No |
 
 ## Request Examples
 

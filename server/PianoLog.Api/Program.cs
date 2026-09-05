@@ -178,7 +178,7 @@ app.MapGet("/api/exports/practice-days", async (CancellationToken cancellationTo
         System.Text.Encoding.UTF8.GetBytes(json),
         contentType: "application/json",
         fileDownloadName: "practice-days.json");
-}).RequireAuthorization();
+});
 
 app.MapGet("/api/logs/{practiceDate}", async (string practiceDate, CancellationToken cancellationToken) =>
 {
