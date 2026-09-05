@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowLeft, ArrowRight, CalendarSearch, Clock3, MoreHorizontal, Pencil, Trash2, Trophy, Goal } from 'lucide-react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { apiUrl } from '../api.ts'
+import { apiFetch } from '../api.ts'
 import './practice-report.css'
 
 type Fundamental = {
@@ -48,7 +48,7 @@ function PracticeReport() {
 
     async function loadLog() {
       try {
-        const response = await fetch(apiUrl(`/api/logs/${encodeURIComponent(dateKey)}`))
+        const response = await apiFetch(`/api/logs/${encodeURIComponent(dateKey)}`)
         if (!response.ok) throw new Error(response.status === 404 ? 'This practice log no longer exists.' : 'Unable to load this practice log.')
         const record = await response.json() as PracticeLog
         if (isCurrent) setLog(record)
@@ -67,7 +67,7 @@ function PracticeReport() {
     if (!practiceDate || !window.confirm('Delete this practice log? This cannot be undone.')) return
 
     try {
-      const response = await fetch(apiUrl(`/api/logs/${encodeURIComponent(practiceDate)}`), { method: 'DELETE' })
+      const response = await apiFetch(`/api/logs/${encodeURIComponent(practiceDate)}`, { method: 'DELETE' })
       if (!response.ok) throw new Error('Unable to delete this practice log.')
       navigate('/history')
     } catch (error) {

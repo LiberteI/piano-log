@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CalendarDays, CalendarSearch, ChevronLeft, ChevronRight, Clock3, Eye, Pencil } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { apiUrl } from '../api.ts'
+import { apiFetch } from '../api.ts'
 import './history.css'
 
 type PracticeLog = {
@@ -79,7 +79,7 @@ function History() {
 
     async function loadLogs() {
       try {
-        const response = await fetch(apiUrl('/api/logs'))
+        const response = await apiFetch('/api/logs')
 
         if (!response.ok) {
           throw new Error('Unable to load practice history.')
