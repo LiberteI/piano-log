@@ -110,3 +110,48 @@
     padding: 1.5rem;
   }
 }
+
+.login-google-button[hidden] {
+  display: none;
+}
+
+.login-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.login-loading p {
+  margin: 0;
+}
+
+.login-spinner {
+  flex-shrink: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 2px solid #303232;
+  border-top-color: #f2b53d;
+  border-radius: 50%;
+  animation: login-spin 1s linear infinite;
+}
+
+.login-retry {
+  margin-top: 1.5rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid #f2b53d;
+  border-radius: 0.5rem;
+  background: #1b1c1c;
+  color: #f2b53d;
+  font: inherit;
+  cursor: pointer;
+}
+
+@keyframes login-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-spinner { animation: none; }
+}
